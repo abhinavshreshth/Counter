@@ -1,0 +1,21 @@
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #1e1e2f;
+  font-family: sans-serif;
+  color: white;
+}
+
+.counter-container {
+  font-size: 100px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); color: #00f0ff; }
+  50% { transform: scale(1.2); color: #ff4081; }
+  100% { transform: scale(1); color: #00f0ff; }
+}
