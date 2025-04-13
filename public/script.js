@@ -98,7 +98,7 @@ socket.on("counter", (data) => {
   const timeStr = new Date(data.timestamp * 1000).toLocaleTimeString();
   
   // If the status is "filled", change the displayed text to "executed"
-  const displayStatus = data.status.toLowerCase() === "filled" ? "executed" : data.status;
+  const displayStatus = data.status.toLowerCase() === "filled" ? "complete" : data.status;
   
   // Generate a slug for the status CSS class: e.g. "executed" or "cancelled-amo"
   const statusSlug = displayStatus.toLowerCase().replace(/\s+/g, "-");
