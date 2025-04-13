@@ -1,0 +1,18 @@
+# Ignore Visual Studio folders and intermediate files
+.vs/
+*.ipch
+*.obj
+*.exe
+*.pdb
+*.ilk
+
+# Ignore build outputs
+build/
+build_vs/
+out/
+
+# Optional: Ignore user-specific Visual Studio files
+*.user
+*.suo
+*.VC.db
+*.log
