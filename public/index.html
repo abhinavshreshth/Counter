@@ -1,41 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Order Dashboard</title>
-
-  <!-- Link to external stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Load Socket.IO -->
-  <script src="/socket.io/socket.io.js"></script>
+  <meta charset="UTF-8">
+  <title>TradeApp - Zerodha-like Layout</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>📡 Live Trade Feed</h1>
 
-  <!-- Table wrapper for styling/scrolling -->
-  <div class="table-container">
-    <table id="tradeTable">
+  <!-- TOP NAVBAR -->
+  <div class="navbar">
+    <div class="brand">TradeApp</div>
+    <ul class="nav-links">
+      <li><a href="#">Dashboard</a></li>
+      <li><a class="active" href="#">Orders</a></li>
+      <li><a href="#">Holdings</a></li>
+      <li><a href="#">Positions</a></li>
+      <li><a href="#">Funds</a></li>
+      <li><a href="#">Profile</a></li>
+    </ul>
+  </div>
+
+  <!-- LEFT SIDEBAR (Watchlist) -->
+  <div class="sidebar">
+    <div class="sidebar-search">
+      <input
+        type="text"
+        placeholder="Search eg: infy bse, nifty fut, index fund, etc."
+      />
+    </div>
+    <ul class="watchlist">
+      <li>
+        <span>OIL</span> <span class="price-up">+2.32%</span>
+      </li>
+      <li>
+        <span>SENSEX</span> <span class="price-up">+1.77%</span>
+      </li>
+      <li>
+        <span>NIFTY BANK</span> <span class="price-down">-0.50%</span>
+      </li>
+      <li>
+        <span>CRUDEOIL APR 5500 CE</span> <span class="price-up">+1.15%</span>
+      </li>
+      <!-- Add more items to match your screenshot -->
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="main-content">
+    <!-- Secondary navigation (Orders, GTT, Baskets, SIP, Alerts) -->
+    <div class="secondary-nav">
+      <a class="active" href="#">Orders</a>
+      <a href="#">GTT</a>
+      <a href="#">Baskets</a>
+      <a href="#">SIP</a>
+      <a href="#">Alerts</a>
+    </div>
+
+    <!-- ORDERS HEADING & SEARCH/EXPORT BAR -->
+    <div class="orders-header">
+      <h2>Trades</h2>
+      <div class="orders-actions">
+        <input type="text" placeholder="Search" class="orders-search" />
+        <button class="download-btn">Download</button>
+      </div>
+    </div>
+
+    <!-- ORDERS TABLE -->
+    <table class="trades-table">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Time</th>
-          <th>User</th>
-          <th>Symbol</th>
-          <th>Side</th>
-          <th>Price</th>
+          <th>Type</th>
+          <th>Instrument</th>
+          <th>Product</th>
           <th>Qty</th>
-          <th>Filled</th>
-          <th>Remaining</th>
+          <th>Price</th>
+          <th>Avg.</th>
           <th>Status</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody id="ordersTableBody">
+        <!-- Script will inject rows here -->
+      </tbody>
     </table>
   </div>
 
-  <!-- Your WebSocket + render logic -->
+  <!-- Socket.IO and custom JS -->
+  <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
