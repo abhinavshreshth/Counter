@@ -6,9 +6,6 @@ const { Server } = require('socket.io');
 
 const app = express();
 const port = 3000;
-d
-
-
 // Create HTTP server and bind Socket.IO to it
 const server = createServer(app);
 const io = new Server(server);
