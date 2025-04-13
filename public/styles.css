@@ -190,7 +190,7 @@ body {
   display: inline-block;
   padding: 0.2rem 0.6rem;
   border-radius: 2px;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 500;
   text-transform: uppercase;
   /* Text alignment and no wrapping, if desired */
@@ -230,7 +230,7 @@ body {
   min-width: 80px; 
   padding: 0.2rem 0.6rem;
   border-radius: 2px;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 500;
   text-transform: uppercase;
   text-align: center;
@@ -249,7 +249,7 @@ body {
   color: #dc3545;            /* Red text color */
 }
 
-.status-pill.cancelled-amo {
+.status-pill.cancelled {
   background-color: #e2e3e5; /* Light gray */
   color: #6c757d;           /* Dark gray text */
 }
