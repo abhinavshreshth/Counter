@@ -1,17 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Counter</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Live Order Dashboard</title>
+
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Load Socket.IO -->
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-  <div class="counter-container">
-    <span id="counter">0</span>
+  <h1>📡 Live Trade Feed</h1>
+
+  <!-- Table wrapper for styling/scrolling -->
+  <div class="table-container">
+    <table id="tradeTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Time</th>
+          <th>User</th>
+          <th>Symbol</th>
+          <th>Side</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Filled</th>
+          <th>Remaining</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </div>
-  <script src="/socket.io/socket.io.js"></script>
+
+  <!-- Your WebSocket + render logic -->
   <script src="script.js"></script>
 </body>
 </html>

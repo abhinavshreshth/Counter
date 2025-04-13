@@ -6,6 +6,7 @@ const { Server } = require('socket.io');
 
 const app = express();
 const port = 3000;
+
 // Create HTTP server and bind Socket.IO to it
 const server = createServer(app);
 const io = new Server(server);
@@ -21,43 +22,52 @@ redisClient.on('error', (err) => {
 });
 
 redisClient.connect().then(() => {
-  console.log('Connected to Redis');
+  console.log('✅ Connected to Redis');
 });
 
 // --- ZeroMQ Pull Socket Setup ---
 const zmqSocket = new zmq.Pull();
 
 (async () => {
-  await zmqSocket.bind('tcp://127.0.0.1:5555');  // Node.js binds, C++ connects
-  console.log('ZeroMQ PULL socket bound to tcp://127.0.0.1:5555');
+  await zmqSocket.bind('tcp://127.0.0.1:5555'); // Node binds, C++ connects
+  console.log('🚀 ZeroMQ PULL socket bound to tcp://127.0.0.1:5555');
 
   for await (const [msg] of zmqSocket) {
-    const counter = msg.toString();
-    console.log('Received from ZeroMQ:', counter);
+    try {
+      const jsonData = JSON.parse(msg.toString());
+      console.log('📥 Received from ZeroMQ:', jsonData);
 
-    // Push to Redis queue
-    await redisClient.lPush('messageQueue', counter);
+      // Store stringified JSON into Redis
+      await redisClient.lPush('messageQueue', JSON.stringify(jsonData));
 
-    // Emit to all connected WebSocket clients
-    io.emit('counter', counter);
+      // Emit parsed JSON to all connected WebSocket clients
+      io.emit('counter', jsonData);
+    } catch (err) {
+      console.error('❌ Failed to parse JSON message:', err.message);
+    }
   }
 })();
 
-// --- Socket.IO Client Connections ---
+// --- WebSocket Client Handling ---
 io.on('connection', async (socket) => {
-  console.log('New WebSocket client connected');
+  console.log('🧑‍💻 New WebSocket client connected');
 
-  const lastMsg = await redisClient.lPop('messageQueue');
-  if (lastMsg) {
-    socket.emit('counter', lastMsg);
+  try {
+    const lastMsg = await redisClient.lPop('messageQueue');
+    if (lastMsg) {
+      const parsed = JSON.parse(lastMsg);
+      socket.emit('counter', parsed);
+    }
+  } catch (err) {
+    console.error('❌ Redis pop or JSON parse error:', err.message);
   }
 
   socket.on('disconnect', () => {
-    console.log('WebSocket client disconnected');
+    console.log('🔌 WebSocket client disconnected');
   });
 });
 
 // --- Start Server ---
 server.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`🌐 Server running at http://localhost:${port}`);
 });
