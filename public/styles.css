@@ -189,9 +189,9 @@ body {
 .type-pill {
   display: inline-block;
   padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 500;
   text-transform: uppercase;
   /* Text alignment and no wrapping, if desired */
   text-align: center;
@@ -223,3 +223,49 @@ body {
 .trades-table thead th:hover {
   background-color: #f2f2f2;
 }
+
+/* General pill style for statuses */
+.status-pill {
+  display: inline-block;
+  min-width: 80px; 
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap; /* Keeps text on one line */
+}
+
+/* Example color schemes: tweak to your liking */
+
+.status-pill.filled {
+  background-color: #d4edda; /* Light green */
+  color: #155724;           /* Dark green text */
+}
+
+.status-pill.rejected {
+  background-color: #ffd8d9; /* pastel pink */
+  color: #c62828;            /* deep red */
+}
+
+.status-pill.cancelled-amo {
+  background-color: #e2e3e5; /* Light gray */
+  color: #6c757d;           /* Dark gray text */
+}
+
+
+/* EXECUTED: Light green w/ deeper green text */
+.status-pill.executed {
+  background-color: #c7f7cb; /* pastel green */
+  color: #2e7d32;            /* medium-dark green */
+}
+
+/* PENDING: Light yellow w/ deeper gold text */
+.status-pill.pending {
+  background-color: #fff4bd; /* pastel yellow */
+  color: #8c6d1f;            /* dark gold */
+}
+
+
+/* Add more if needed. For instance: .status-pill.completed, .status-pill.partially-filled, etc. */
