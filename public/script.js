@@ -167,6 +167,10 @@ function showToast(data) {
     titleText = "Complete";
     colorClass = "toast-green";
     messageText = `${symbol} order executed successfully.`;
+  } else if (statusLower === "pending") {
+    titleText = "Placed";
+    colorClass = "toast-orange";
+    messageText = `${side} ${symbol} is placed and is in pending.`;
   }
 
   toast.classList.add(colorClass);

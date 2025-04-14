@@ -18,6 +18,10 @@ T getRandomElement(const vector<T>& vec) {
     return vec[rand() % vec.size()];
 }
 
+int getRandomSleepDuration(int minMs, int maxMs) {
+    return minMs + rand() % (maxMs - minMs + 1);
+}
+
 int main() {
     srand(time(0));  // Seed random
 
@@ -30,6 +34,7 @@ int main() {
         cerr << "Redis connection failed: " << redis->errstr << endl;
         return -1;
     }
+
 
     vector<string> symbols = { "TCS", "INFY", "HDFC", "RELIANCE", "SBIN" };
     vector<string> orderTypes = { "limit", "market" };
@@ -78,7 +83,9 @@ int main() {
         socket.send(zmq::buffer(jsonStr), zmq::send_flags::none);
 
         cout << "Sent simulated order JSON: " << jsonStr << endl;
-        this_thread::sleep_for(chrono::milliseconds(900));
+        // Random sleep between 2000ms and 7000ms
+        int sleepMs = getRandomSleepDuration(300, 3000);
+        this_thread::sleep_for(chrono::milliseconds(sleepMs));
     }
 
     redisFree(redis);
