@@ -138,17 +138,44 @@ socket.on("counter", (data) => {
     tableBody.removeChild(tableBody.lastChild);
   }
 
-  showToast(`${data.payload.side.toUpperCase()} ${data.payload.symbol} is placed. Check the orderbook for status.`, data.id);
-
+  showToast(data);
 });
-function showToast(message, id) {
+
+// Toast notification
+function showToast(data) {
   const toast = document.createElement("div");
   toast.className = "toast";
-  toast.innerHTML = `
-    <strong>Placed</strong>
-    ${message}<br><small style="color: #888;">#${id}</small>
-  `;
-  document.getElementById("toast-container").appendChild(toast);
 
+  const { status, payload, id } = data;
+  const statusLower = status.toLowerCase();
+  const symbol = payload.symbol;
+  const side = payload.side.toUpperCase();
+
+  let titleText = "Placed";
+  let colorClass = "toast-orange";
+  let messageText = `${side} ${symbol} is placed.`; // default
+
+  if (statusLower === "cancelled") {
+    titleText = "Cancelled";
+    colorClass = "toast-blue";
+    messageText = `${symbol} order was cancelled.`;
+  } else if (statusLower === "rejected") {
+    titleText = "Rejected";
+    colorClass = "toast-red";
+    messageText = `${side} ${symbol} was rejected by exchange.`;
+  } else if (statusLower === "filled" || statusLower === "complete") {
+    titleText = "Complete";
+    colorClass = "toast-green";
+    messageText = `${symbol} order executed successfully.`;
+  }
+
+  toast.classList.add(colorClass);
+  toast.innerHTML = `
+    <strong>${titleText}</strong>
+    ${messageText}<br><small style="color: #888;">#${id}</small>
+  `;
+
+  document.getElementById("toast-container").appendChild(toast);
   setTimeout(() => toast.remove(), 4000);
 }
+

@@ -302,3 +302,40 @@ body {
   100% { opacity: 0; transform: translateY(20px); }
 }
 
+.toast-blue {
+  border-left: 6px solid #3498db;
+}
+.toast-red {
+  border-left: 6px solid #e74c3c;
+}
+.toast-green {
+  border-left: 6px solid #27ae60;
+}
+.toast-orange {
+  border-left: 6px solid #FF7733; /* match this with orange theme */
+}
+
+.toast-blue strong {
+  color: #3498db;
+}
+
+.toast-red strong {
+  color: #e74c3c;
+}
+
+.toast-green strong {
+  color: #27ae60;
+}
+
+.toast-orange strong {
+  color: #FF7733;
+}
+
+.toast-gray {
+  border-left: 6px solid 	#6c757d;
+}
+.toast-gray strong {
+  color: #6c757d;
+}
+
+
