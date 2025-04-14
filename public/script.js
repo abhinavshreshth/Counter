@@ -1,4 +1,8 @@
-const socket = io();
+const socket = io({
+  reconnection: true,
+  reconnectionAttempts: 10,
+  reconnectionDelay: 1000,
+});
 const tableBody = document.getElementById("ordersTableBody");
 
 // Sorting state
@@ -11,7 +15,7 @@ let hasClearedOnce = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   const headerCells = document.querySelectorAll(".trades-table thead th");
-  
+
   headerCells.forEach((th, index) => {
     th.addEventListener("click", () => {
       if (activeSortColumn !== index) {
@@ -39,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function sortTable(columnIndex, sortState) {
   const rowsArray = Array.from(tableBody.querySelectorAll("tr"));
-  
+
   rowsArray.sort((rowA, rowB) => {
     const cellA = rowA.children[columnIndex].innerText.trim();
     const cellB = rowB.children[columnIndex].innerText.trim();
@@ -73,6 +77,13 @@ function sortByTime() {
   rowsArray.forEach(row => tableBody.appendChild(row));
 }
 
+// Optional: Clear old shownIds every minute to avoid memory bloat
+setInterval(() => shownIds.clear(), 60000);
+
+// WebSocket connection status logs
+socket.on("connect", () => console.log("✅ Connected to WebSocket"));
+socket.on("disconnect", () => console.warn("⚠️ Disconnected from WebSocket"));
+
 socket.on("counter", (data) => {
   // Clear old data once when first message arrives (i.e., on refresh)
   if (!hasClearedOnce) {
@@ -80,27 +91,22 @@ socket.on("counter", (data) => {
     hasClearedOnce = true;
   }
 
-  // Avoid duplicate rendering
-  if (shownIds.has(data.id)) return;
-  shownIds.add(data.id);
+  // Create a unique key based on id + timestamp + symbol + side + status
+  const uniqueKey = `${data.id}_${data.timestamp}_${data.payload.symbol}_${data.payload.side}_${data.status}`;
+  if (shownIds.has(uniqueKey)) return;
+  shownIds.add(uniqueKey);
 
   const row = document.createElement("tr");
   row.setAttribute("data-timestamp", data.timestamp);
   const timeStr = new Date(data.timestamp * 1000).toLocaleTimeString();
 
   let displayStatus = data.status.toLowerCase();
-// If the status is "filled", change it to "complete"
   if (displayStatus === "filled") {
     displayStatus = "complete";
   }
-// If the status is "cancelled amo", change it to "cancel"
 
-  else if (displayStatus === "rejected") {
-    displayStatus = "rejected";
-  }
-  // Generate a slug for the status CSS class: e.g. "executed" or "cancelled-amo"
   const statusSlug = displayStatus.toLowerCase().replace(/\s+/g, "-");
-  
+
   row.innerHTML = `
     <td>${timeStr}</td>
     <td>
