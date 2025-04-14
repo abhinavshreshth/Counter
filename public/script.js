@@ -137,4 +137,18 @@ socket.on("counter", (data) => {
   while (tableBody.rows.length > 50) {
     tableBody.removeChild(tableBody.lastChild);
   }
+
+  showToast(`${data.payload.side.toUpperCase()} ${data.payload.symbol} is placed. Check the orderbook for status.`, data.id);
+
 });
+function showToast(message, id) {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerHTML = `
+    <strong>Placed</strong>
+    ${message}<br><small style="color: #888;">#${id}</small>
+  `;
+  document.getElementById("toast-container").appendChild(toast);
+
+  setTimeout(() => toast.remove(), 4000);
+}
