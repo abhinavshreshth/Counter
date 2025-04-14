@@ -53,13 +53,14 @@ io.on('connection', async (socket) => {
   console.log('🧑‍💻 New WebSocket client connected');
 
   try {
-    const lastMsg = await redisClient.lPop('messageQueue');
-    if (lastMsg) {
-      const parsed = JSON.parse(lastMsg);
+    // Instead of lPop, use lRange to get the latest 50 messages without removing them.
+    const messages = await redisClient.lRange('messageQueue', 0, 1000);
+    messages.forEach(msg => {
+      const parsed = JSON.parse(msg);
       socket.emit('counter', parsed);
-    }
+    });
   } catch (err) {
-    console.error('❌ Redis pop or JSON parse error:', err.message);
+    console.error('❌ Redis LRANGE or JSON parse error:', err.message);
   }
 
   socket.on('disconnect', () => {

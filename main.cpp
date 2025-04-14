@@ -33,7 +33,11 @@ int main() {
 
     vector<string> symbols = { "TCS", "INFY", "HDFC", "RELIANCE", "SBIN" };
     vector<string> orderTypes = { "limit", "market" };
-    vector<string> statuses = { "pending", "filled", "rejected" };
+    vector<string> statuses = {
+    "pending", "filled", "filled",
+    "pending", "filled", "pending",
+    "filled", "cancelled", "rejected"
+    };
     vector<string> sides = { "buy", "sell" };
     vector<string> users = { "user_101", "user_102", "user_103", "user_104" };
 
