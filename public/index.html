@@ -1,54 +1,47 @@
+<!-- /public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>MakeMyTrade</title>
-  <!-- Link to external CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <!-- TOP NAVBAR -->
   <div class="navbar">
-    <div class="brand">MakeMyTrade</div>
+    <!-- <div class="brand">MakeMyTrade</div> -->
+    <div class="brand">
+    <img src="/images/logo.png" alt="MakeMyTrade" class="site-logo" />
+    </div>
     <ul class="nav-links">
-      <li><a href="#">Dashboard</a></li>
+      <li><a href="/">Dashboard</a></li>
       <li><a class="active" href="#">Orders</a></li>
       <li><a href="#">Holdings</a></li>
       <li><a href="#">Positions</a></li>
       <li><a href="#">Funds</a></li>
-      <li><a href="#">Profile</a></li>
+      <!-- Single Logout button -->
+      <li>
+        <button id="logoutBtn" class="logout-button">Logout</button>
+      </li>
     </ul>
   </div>
 
   <!-- LEFT SIDEBAR (Watchlist) -->
   <div class="sidebar">
     <div class="sidebar-search">
-      <input
-        type="text"
-        placeholder="Search eg: infy bse, nifty fut, index fund, etc."
-      />
+      <input type="text" placeholder="Search eg: infy bse, nifty fut, index fund, etc." />
     </div>
     <ul class="watchlist">
-      <li>
-        <span>OIL</span> <span class="price-up">+2.32%</span>
-      </li>
-      <li>
-        <span>SENSEX</span> <span class="price-up">+1.77%</span>
-      </li>
-      <li>
-        <span>NIFTY BANK</span> <span class="price-down">-0.50%</span>
-      </li>
-      <li>
-        <span>CRUDEOIL APR 5500 CE</span> <span class="price-up">+1.15%</span>
-      </li>
-      <!-- Add more items to match your screenshot -->
+      <li><span>OIL</span> <span class="price-up">+2.32%</span></li>
+      <li><span>SENSEX</span> <span class="price-up">+1.77%</span></li>
+      <li><span>NIFTY BANK</span> <span class="price-down">-0.50%</span></li>
+      <li><span>CRUDEOIL APR 5500 CE</span> <span class="price-up">+1.15%</span></li>
     </ul>
   </div>
 
   <!-- MAIN CONTENT AREA -->
   <div class="main-content">
-    <!-- Secondary navigation (Orders, GTT, Baskets, SIP, Alerts) -->
     <div class="secondary-nav">
       <a class="active" href="#">Orders</a>
       <a href="#">GTT</a>
@@ -57,7 +50,6 @@
       <a href="#">Alerts</a>
     </div>
 
-    <!-- ORDERS HEADING & SEARCH/EXPORT BAR -->
     <div class="orders-header">
       <h2>Trades</h2>
       <div class="orders-actions">
@@ -66,7 +58,6 @@
       </div>
     </div>
 
-    <!-- ORDERS TABLE -->
     <table class="trades-table">
       <thead>
         <tr>
@@ -81,16 +72,13 @@
         </tr>
       </thead>
       <tbody id="ordersTableBody">
-        <!-- Script will inject rows here -->
+        <!-- Rows get injected here -->
       </tbody>
     </table>
   </div>
 
-  <!-- Socket.IO and custom JS -->
   <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
-  
-  <!-- ✅ Toast Container -->
   <div id="toast-container"></div>
 
 </body>

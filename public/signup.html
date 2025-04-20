@@ -1,0 +1,153 @@
+<!-- /public/signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup – MakeMyTrade</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body class="login-body">
+  <div class="login-container">
+
+    <!-- Animated header -->
+    <!-- <h2 id="form-heading">Create Account</h2> -->
+
+   <div class="signup-header">
+       <img
+         src="images/login-logo.png"
+         alt="MakeMyTrade"
+         class="site-logo"
+       />
+     </div>
+
+    <form id="signupForm" action="/signup" method="POST" novalidate>
+      <!-- STEP 1: Full Name, Email, Phone, Username -->
+      <fieldset class="form-step active">
+        <input type="text" name="fullname" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="tel" name="phone" placeholder="Phone" required />
+        <input type="text" name="username" placeholder="Username" required />
+
+        <div class="step-buttons">
+          <!-- no Prev on first step -->
+          <span></span>
+          <button type="button" class="next-btn">Next →</button>
+        </div>
+      </fieldset>
+
+      <!-- STEP 2: Password, Confirm, Address, Organization -->
+      <fieldset class="form-step">
+        <input type="password" name="password" placeholder="Password" required minlength="6" />
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" required />
+        <textarea name="address" placeholder="Address (optional)" rows="3"></textarea>
+        <input type="text" name="organization" placeholder="Organization (optional)" />
+
+        <div class="step-buttons">
+          <button type="button" class="prev-btn">← Prev</button>
+          <button type="button" class="next-btn">Next →</button>
+        </div>
+      </fieldset>
+
+      <!-- STEP 3: Country, State, DOB, CAPTCHA -->
+      <fieldset class="form-step">
+        <select name="country" id="country" required>
+          <option value="">Select Country</option>
+          <option value="India">India</option>
+          <option value="USA">USA</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <select name="state" id="state" required>
+          <option value="">Select State</option>
+          <option value="Bihar">Bihar</option>
+          <option value="California">California</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <input type="date" name="dob" placeholder="Date of Birth (optional)" />
+
+        <!-- CAPTCHA -->
+        <div class="captcha-box">
+          <label id="captcha-label"></label>
+          <input type="number" id="captchaAnswer" placeholder="Answer" required />
+          <button type="button" id="refreshCaptcha">↻</button>
+        </div>
+
+        <div class="step-buttons">
+          <button type="button" class="prev-btn">← Prev</button>
+          <button type="submit">Submit</button>
+        </div>
+      </fieldset>
+    </form>
+
+    <p class="signup-link">
+      Already have an account? <a href="login.html">Login</a>
+    </p>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // ─── STEP WIZARD ──────────────────────────────────────────
+    const steps = Array.from(document.querySelectorAll('.form-step'));
+    let currentStep = 0;
+
+    function showStep(i) {
+      steps.forEach((fs, idx) => fs.classList.toggle('active', idx === i));
+    }
+
+    // Next buttons
+    document.querySelectorAll('.next-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // simple required‑field check
+        const inputs = steps[currentStep].querySelectorAll('input[required], select[required]');
+        let valid = true;
+        inputs.forEach(i => {
+          if (!i.value) {
+            i.classList.add('shake');
+            valid = false;
+          }
+        });
+        if (!valid) {
+          setTimeout(() => inputs.forEach(i => i.classList.remove('shake')), 500);
+          return;
+        }
+        currentStep++;
+        showStep(currentStep);
+      });
+    });
+
+    // Prev buttons
+    document.querySelectorAll('.prev-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentStep--;
+        showStep(currentStep);
+      });
+    });
+
+    // ─── CAPTCHA & FINAL SUBMIT ─────────────────────────────
+    const form = document.getElementById('signupForm');
+    const password = form.password;
+    const confirmPassword = form.confirmPassword;
+    const captchaLabel = document.getElementById('captcha-label');
+    const captchaAnswer = document.getElementById('captchaAnswer');
+    const refreshCaptchaBtn = document.getElementById('refreshCaptcha');
+
+    let a = 0, b = 0;
+    function generateCaptcha() {
+      a = Math.floor(Math.random() * 10);
+      b = Math.floor(Math.random() * 10);
+      captchaLabel.innerText = `Captcha: ${a} + ${b} = ?`;
+      captchaAnswer.value = '';
+    }
+    refreshCaptchaBtn.addEventListener('click', generateCaptcha);
+    window.addEventListener('load', generateCaptcha);;
+  </script>
+
+    <!-- Shared client logic: handles validation, AJAX POST to /signup -->
+    <script src="script.js"></script>
+
+    <!-- Toast container for animated notifications -->
+    <div id="toast-container"></div>
+</body>
+</html>

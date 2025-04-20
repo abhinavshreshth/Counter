@@ -1,5 +1,4 @@
-/* login.css - Styles specific to login screen */
-
+/* /public/login.css */
 body.login-body {
     display: flex;
     align-items: center;
@@ -8,34 +7,38 @@ body.login-body {
     background: #f8f8f8;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     margin: 0;
-  }
-  
-  .login-container {
+}
+
+.login-container {
     background-color: #fff;
     padding: 2rem 2.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     text-align: center;
     width: 320px;
-  }
-  
-  .login-container h2 {
+}
+
+.login-container h2 {
     color: #fa5f2e;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
-  }
-  
-  .login-container input {
+}
+
+/* Inputs */
+.login-container input {
     display: block;
+    box-sizing: border-box;
     width: 100%;
     margin-bottom: 1rem;
     padding: 0.6rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
-  }
-  
-  .login-container button {
+}
+
+/* Button */
+.login-container button {
+    box-sizing: border-box;
     width: 100%;
     background-color: #fa5f2e;
     color: #fff;
@@ -46,9 +49,252 @@ body.login-body {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease;
-  }
-  
-  .login-container button:hover {
+}
+
+.login-container button:hover {
     background-color: #e14f1e;
+}
+  /* login and signup effect */
+  /* Toast container sits in the top‑right */
+  #toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10000;
+    pointer-events: none;
   }
   
+  /* Individual toast */
+  .toast {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.375rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: auto;
+  }
+  
+  /* When visible */
+  .toast.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Error variant */
+  .toast.error {
+    background: #e74c3c;
+  }
+  
+  /* Success variant (if you need it) */
+  .toast.success {
+    background: #27ae60;
+  }
+
+  /* Shake animation */
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25%     { transform: translateX(-6px); }
+    50%     { transform: translateX(6px); }
+    75%     { transform: translateX(-4px); }
+  }
+  
+  .shake {
+    animation: shake 0.5s;
+    border: 1px solid red;
+  }
+  
+  /* Success checkmark animation */
+  .success-checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: none;
+    margin: 20px auto;
+    position: relative;
+    border: 4px solid #4CAF50;
+    animation: pop 0.5s ease-out forwards;
+  }
+  
+  @keyframes pop {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .success-checkmark:after {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 40px;
+    width: 12px;
+    height: 24px;
+    border: solid #4CAF50;
+    border-width: 0 4px 4px 0;
+    transform: rotate(45deg);
+    animation: draw 0.5s ease-out forwards;
+  }
+  
+  @keyframes draw {
+    0% { height: 0; width: 0; opacity: 0; }
+    100% { height: 24px; width: 12px; opacity: 1; }
+  }
+  
+      /* …end of your existing button styles… */
+      .login-container button {
+        box-sizing: border-box;
+        width: 100%;
+        background-color: #fa5f2e;
+        color: #fff;
+        padding: 0.6rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    /* ↓↓↓ insert signup‑link styles here ↓↓↓ */
+    .signup-link {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #555;
+    }
+    .signup-link a {
+        color: #fa5f2e;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.2rem 0.6rem;
+        border: 1px solid #fa5f2e;
+        border-radius: 4px;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .signup-link a:hover {
+        background-color: #fa5f2e;
+        color: #fff;
+    }
+    /* ↑↑↑ end insert ↑↑↑ */
+
+    /* …any styles that follow… */
+
+    @keyframes fadeOutShrink {
+        0%   { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0.7); }
+      }
+      
+      @keyframes fadeInGrow {
+        0%   { opacity: 0; transform: scale(0.7); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+      
+      #form-heading.animate-out {
+        animation: fadeOutShrink 0.4s ease forwards;
+      }
+      
+      #form-heading.animate-in {
+        animation: fadeInGrow 0.4s ease forwards;
+      }
+
+      /* login.css */
+
+      .login-logo {
+        display: block;
+        margin: 0 auto 1.5rem;
+        height: 120px;    /* tweak this value until it “fits” */
+        width: auto;
+        padding-right: 0;  
+      }
+      
+/* ── LOGIN CAPTCHA (match signup) ───────────────────────────────── */
+.captcha-box {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;           /* space above & below */
+}
+.captcha-box label {
+  flex: 1;                  /* take up remaining space */
+  white-space: nowrap;      /* prevent wrapping */
+  font-weight: 500;
+}
+.captcha-box input {
+  width: 6rem;              /* a bit wider so "Answer" fits */
+  margin: 0 0.5rem;
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.captcha-box button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+
+/* ──────────────────────────────────────────────────────────────── */
+
+
+/* ── Match signup‑link typography for the captcha label ── */
+.captcha-box label {
+  font-size:    0.875rem;   /* same as “Don’t have an account?” */
+  font-weight:  400;        /* normal, not bold */
+  line-height:  1.5;        /* match your body text */
+  color:        #555555;    /* exact same hex */
+  margin-right: 0.5rem;     /* keep space before the input */
+  white-space:  nowrap;     /* one‑line text */
+}
+/* ───────────────────────────────────────────────────────── */
+
+/* ── Override default white styling for the ↻ button ── */
+#login-refreshCaptcha {
+  /* exactly your Login‑button defaults: */
+  background-color: #fa5f2e;
+  color:            #fff;
+  border:           1px solid #fa5f2e;
+  padding:          0.75rem 1.25rem;
+  border-radius:    4px;
+  font-size:        1rem;
+  line-height:      0.45;
+  cursor:           pointer;
+  transition:       transition; 
+  background-color: 0.2s ease, color 0.2s ease;
+}
+
+/* reuse the same hover rules, too */
+#login-refreshCaptcha:hover {
+  background-color: #e15822;
+}
+#login-refreshCaptcha:active {
+  transform: translateY(0);
+}
+/* ────────────────────────────────────────────────── */
+
+.button-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.button-loading::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}

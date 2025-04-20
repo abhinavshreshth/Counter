@@ -1,26 +1,59 @@
+<!-- /public/login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - MakeMyTrade</title>
+  <title>Login – MakeMyTrade</title>
   <link rel="stylesheet" href="login.css" />
 </head>
 <body class="login-body">
   <div class="login-container">
-    <h2>MakeMyTrade</h2>
+  <img
+  src="images/login-logo.png"
+  alt="MakeMyTrade"
+  class="login-logo"
+ />
     <form id="loginForm">
-      <input type="text" placeholder="Username" required />
-      <input type="password" placeholder="Password" required />
+      <input 
+        name="username" 
+        type="text" 
+        placeholder="Username" 
+        required 
+      />
+      <input 
+        name="password" 
+        type="password" 
+        placeholder="Password" 
+        required 
+        minlength="6" 
+      />
+    
+      <!-- CAPTCHA GOES HERE -->
+      <!-- (add the next 5 lines) -->
+      <div class="captcha-box">
+        <label id="login-captcha-label"></label>
+        <input
+          type="number"
+          id="loginCaptchaAnswer"
+          placeholder="Answer"
+          required
+        />
+        <button type="button" id="login-refreshCaptcha">↻</button>
+      </div>
+  
       <button type="submit">Login</button>
     </form>
+    <p class="signup-link">
+      Don’t have an account? 
+      <a href="/signup">Sign up here</a>
+    </p>
   </div>
 
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      window.location.href = 'index.html'; // Replace with dashboard later
-    });
-  </script>
+  <!-- Shared client logic: handles validation, AJAX POST to /login, redirect/alerts -->
+  <script src="script.js"></script>
+  
+ <!-- Toast container for animated notifications -->
+  <div id="toast-container"></div>
 </body>
 </html>

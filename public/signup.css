@@ -1,0 +1,310 @@
+/* /public/login.css */
+body.login-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f8f8f8;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  margin: 0;
+}
+
+.login-container {
+  background-color: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 320px;
+}
+
+.login-container h2 {
+  color: #fa5f2e;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+/* Inputs */
+.login-container input,
+.login-container textarea,
+.login-container select {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Button */
+.login-container button {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fa5f2e;
+  color: #fff;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.login-container button:hover {
+  background-color: #e14f1e;
+}
+/* login and signup effect */
+/* Toast container sits in the top‑right */
+#toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+/* Individual toast */
+.toast {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.375rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: auto;
+}
+
+/* When visible */
+.toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Error variant */
+.toast.error {
+  background: #e74c3c;
+}
+
+/* Success variant (if you need it) */
+.toast.success {
+  background: #27ae60;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.5s;
+  border: 1px solid red;
+}
+
+    /* …end of your existing button styles… */
+    .login-container button {
+      box-sizing: border-box;
+      width: 100%;
+      background-color: #fa5f2e;
+      color: #fff;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+  }
+
+  /* ↓↓↓ insert signup‑link styles here ↓↓↓ */
+  .signup-link {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #555;
+  }
+  .signup-link a {
+      color: #fa5f2e;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid #fa5f2e;
+      border-radius: 4px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .signup-link a:hover {
+      background-color: #fa5f2e;
+      color: #fff;
+  }
+  /* ↑↑↑ end insert ↑↑↑ */
+
+  /* …any styles that follow… */
+
+  @keyframes fadeOutShrink {
+      0%   { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.7); }
+    }
+    
+    @keyframes fadeInGrow {
+      0%   { opacity: 0; transform: scale(0.7); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    
+    #form-heading.animate-out {
+      animation: fadeOutShrink 0.4s ease forwards;
+    }
+    
+    #form-heading.animate-in {
+      animation: fadeInGrow 0.4s ease forwards;
+    }
+
+/* Shake effect for errors */
+.shake {
+animation: shakeAnim 0.4s ease;
+border: 1px solid red;
+}
+
+@keyframes shakeAnim {
+0%, 100% { transform: translateX(0); }
+25% { transform: translateX(-6px); }
+50% { transform: translateX(6px); }
+75% { transform: translateX(-4px); }
+}
+
+/* Loading spinner inside button */
+.button-loading {
+position: relative;
+pointer-events: none;
+opacity: 0.7;
+}
+
+.button-loading::after {
+content: "";
+position: absolute;
+top: 50%;
+right: 12px;
+width: 16px;
+height: 16px;
+border: 2px solid #fff;
+border-top-color: transparent;
+border-radius: 50%;
+animation: spin 0.6s linear infinite;
+transform: translateY(-50%);
+}
+
+@keyframes spin {
+to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Multi‑step form: hide all steps by default */
+.form-step {
+  display: none;
+}
+
+/* Show only the active step */
+.form-step.active {
+  display: block;
+}
+
+/* Next/Prev button container */
+.step-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+/* Small override so these buttons match your theme */
+.step-buttons button {
+  width: auto;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background: #fa5f2e;
+  color: #fff;
+  transition: background-color 0.2s ease;
+}
+.step-buttons button:hover {
+  background: #e14f1e;
+}
+
+/* Shake on validation error */
+input.shake, select.shake, textarea.shake {
+  animation: shakeAnim 0.4s ease;
+  border: 1px solid red;
+}
+
+/* ── Wizard layout fixes ── */
+
+/* Ensure each fieldset has a bit of inner padding */
+.form-step {
+  padding: 1rem 0;
+}
+
+/* Space out controls and keep them uniform */
+.form-step input,
+.form-step select,
+.form-step textarea {
+  margin-bottom: 1rem;
+}
+
+/* Horizontal Next/Prev buttons */
+.step-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.step-buttons button {
+  flex: 1;
+  margin: 0;         /* remove extra vertical margin */
+  padding: 0.6rem;   /* match your primary button */
+}
+
+/* Make CAPTCHA box a single column for Step 3 */
+.captcha-box {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.captcha-box label,
+.captcha-box input,
+.captcha-box button {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Signup Header Logo & Tagline ───────────────────────────────── */
+.login-logo {
+  display: block;
+  margin: 0 auto 1.5rem;
+  height: 120px;    /* tweak this value until it “fits” */
+  width: auto;
+}
+.signup-header .site-logo {
+  max-width: 320px;   /* ↑ increase this (was 240px) */
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.signup-header .tagline {
+  margin-top: 0.5rem;
+  color: #ff6933;     /* same gradient or color you use on login */
+  font-size: 1rem;
+  font-style: italic; /* match your signup tagline style */
+}
+/* ──────────────────────────────────────────────────────────────── */
