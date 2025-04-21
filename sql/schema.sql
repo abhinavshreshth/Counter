@@ -3,9 +3,17 @@
 -- Users table
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
-    username TEXT UNIQUE NOT NULL,
-    password_hash TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    fullname       TEXT NOT NULL,
+    email          TEXT UNIQUE NOT NULL,
+    phone          TEXT,
+    username       TEXT UNIQUE NOT NULL,
+    password_hash  TEXT NOT NULL,
+    address        TEXT,
+    country        TEXT NOT NULL,
+    state          TEXT NOT NULL,
+    organization   TEXT,
+    dob            DATE,
+    created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Sessions (for express-session + connect-pg-simple)
