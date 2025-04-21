@@ -8,6 +8,7 @@ const http          = require('http');
 const socketIo      = require('socket.io');
 
 const authRoutes    = require('./routes');
+const captchaRoute  = require('./auth/captcha');
 const socketHandler = require('./socket/socketHandler');
 const zmqReceiver   = require('./zmq/receiver');
 const errorHandler  = require('./middleware/errorHandler');
@@ -20,14 +21,17 @@ const app    = express();
 const server = http.createServer(app);
 const io     = socketIo(server);
 
-// Body parsing
+// ——————————————————————————————
+// Middleware Setup
+// ——————————————————————————————
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Session middleware
+
+// Session (use only ONE instance)
 app.use(session({
   store: sessionStore,
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET || 'keyboard-cat',
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -38,7 +42,14 @@ app.use(session({
   }
 }));
 
-// ─── Auto‑redirect logged‑in users off login/signup ─────────────
+// ——————————————————————————————
+// CAPTCHA Route
+// ——————————————————————————————
+app.use('/captcha', captchaRoute); // ✅ Now /captcha will work!
+
+// ——————————————————————————————
+// Route Guards and Pretty Redirects
+// ——————————————————————————————
 app.use(['/login.html','/signup.html'], (req, res, next) => {
   if (req.session.userId) {
     return res.redirect('/');
@@ -46,7 +57,6 @@ app.use(['/login.html','/signup.html'], (req, res, next) => {
   next();
 });
 
-// ─── Protect dashboard page ───────────────────────────────────────
 app.use('/index.html', (req, res, next) => {
   if (!req.session.userId) {
     return res.redirect('/login.html');
@@ -54,7 +64,6 @@ app.use('/index.html', (req, res, next) => {
   next();
 });
 
-// pretty URLs
 app.get('/login', (req, res) => {
   // if user is already in session, send them to the dashboard
   if (req.session.userId) {
@@ -70,49 +79,45 @@ app.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'signup.html'));
 });
 
-
-// Redirect requests for *.html to the extensionless route
 app.get('/*.html', (req, res) => {
-  // e.g. "/login.html" → "/login"
   const clean = req.path.replace(/\.html$/, '');
   res.redirect(clean);
 });
 
 // Static assets
 app.use(express.static(path.join(__dirname, '..', 'public'), {
-  index: false       // don’t serve index.html at `/`
+  index: false
 }));
 
-// Protect the root path (“/”) too:
 app.get('/', (req, res) => {
   if (!req.session.userId) {
     return res.redirect('/login');
   }
-  // Clear any caching so “back” won’t show stale content:
   res.set('Cache-Control', 'no-store');
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
-// Auth routes
+// ——————————————————————————————
+// Auth routes + real-time + error handler
+// ——————————————————————————————
 app.use('/', authRoutes);
 
-// Real‑time wiring
 socketHandler(io);
 zmqReceiver(io);
-
-// Global error handler
 app.use(errorHandler);
 
-// Async startup: ensure DB and then listen
+// ——————————————————————————————
+// Async Startup
+// ——————————————————————————————
 (async () => {
   try {
     const client = await pool.connect();
     console.log('✅ Connected to PostgreSQL');
     client.release();
 
-    await initDatabase();                        
+    await initDatabase();
 
-    const PORT = process.env.PORT || 3000;    
+    const PORT = process.env.PORT || 3000;
     console.log('🗄️  Database initialized, starting server…');
     server.listen(PORT, () => {
       console.log(`🌐 Server running on http://localhost:${PORT}`);

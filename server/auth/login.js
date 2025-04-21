@@ -3,7 +3,13 @@ const pool   = require('../db/pg');
 const bcrypt = require('bcrypt');
 
 module.exports = async function loginHandler(req, res) {
-  const { username, password } = req.body;
+  const { username, password, captchaAnswer } = req.body;
+
+  if (parseInt(captchaAnswer, 10) !== req.session.captchaAnswer) {
+    console.log('❌ CAPTCHA failed');
+    return res.status(400).json({ success: false, message: 'Invalid CAPTCHA' });
+  }
+  
   console.log('🔑 Login attempt for:', username);
 
   if (!username || !password) {

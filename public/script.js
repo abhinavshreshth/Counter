@@ -104,13 +104,16 @@ document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
 // ─── LOGIN CAPTCHA LOGIC START ─────────────────────────────────
 let loginA, loginB;
 
-function generateLoginCaptcha() {
-  loginA = Math.floor(Math.random() * 10);
-  loginB = Math.floor(Math.random() * 10);
+async function generateLoginCaptcha() {
+  const res = await fetch('/captcha');
+  const { a, b } = await res.json();
+  loginA = a;
+  loginB = b;
   document.getElementById('login-captcha-label').innerText =
-    `Captcha: ${loginA} + ${loginB} = ?`;
+    `Captcha: ${a} + ${b} = ?`;
   document.getElementById('loginCaptchaAnswer').value = '';
 }
+
 
 window.addEventListener('load', generateLoginCaptcha);
 document.getElementById('login-refreshCaptcha')?.addEventListener('click', generateLoginCaptcha);
@@ -154,7 +157,11 @@ document.getElementById('loginForm')?.addEventListener('submit', async e => {
     const res = await fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: uname, password: pwd })
+      body: JSON.stringify({
+        username: uname,
+        password: pwd,
+        captchaAnswer: document.getElementById('loginCaptchaAnswer').value
+      })
     });
 
     const body = await res.json();
@@ -315,3 +322,4 @@ function showOrderToast({ status, payload, id }) {
   document.getElementById("toast-container").appendChild(t);
   setTimeout(()=>t.remove(),4000);
 }
+window.addEventListener('load', generateLoginCaptcha);

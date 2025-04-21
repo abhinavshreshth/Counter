@@ -16,3 +16,9 @@ out/
 *.suo
 *.VC.db
 *.log
+
+# Ignore project-specific folders
+/makemytrade/
+/node_modules/
+/old/
+/backedn/build_vs/
