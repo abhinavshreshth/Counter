@@ -169,6 +169,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async e => {
           ? document.querySelector('input[name="username"]')
           : document.querySelector('input[name="password"]')
       );
+      generateLoginCaptcha();
       loginBtn.classList.remove('button-loading');
       loginBtn.disabled = false;
     }
