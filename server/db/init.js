@@ -38,10 +38,10 @@ const tableDefinitions = [
   // index on order_logs
   `CREATE INDEX IF NOT EXISTS idx_order_user ON order_logs(user_id, status);`,
 
-  // 4. strategies
+  // 4. strategies (name is now UNIQUE)
   `CREATE TABLE IF NOT EXISTS strategies (
      id SERIAL PRIMARY KEY,
-     name TEXT NOT NULL,
+     name TEXT NOT NULL UNIQUE,
      description TEXT
   );`,
 
