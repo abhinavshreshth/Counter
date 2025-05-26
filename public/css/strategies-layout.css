@@ -1,0 +1,78 @@
+/* body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: sans-serif;
+} */
+
+.main-flex-container {
+  display: flex;
+  height: calc(100vh - 60px); /* adjust based on navbar height */
+  width: 100%;
+}
+
+.left-panel {
+  width: var(--left-panel-width, 260px);  /* ✅ use saved value or fallback */
+  min-width: 300px;                       /* ✅ still prevents collapse */
+  background: #f9f9f9;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+  padding: 1rem;
+  transition: width 0.15s ease-out;
+  flex-shrink: 0;                         /* ✅ optional, prevents shrink in flex */
+}
+
+
+
+.resizer {
+  width: 6px;
+  cursor: ew-resize;
+  background: #ddd;
+}
+
+.right-panel {
+  flex-grow: 1;
+  background: #fff;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+button {
+  padding: 6px 12px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background: #0056b3;
+}
+
+.resizer {
+  width: 6px;
+  cursor: col-resize;
+  background: linear-gradient(to right, #ccc, #999, #ccc);
+  transition: background 0.3s;
+}
+
+.resizer:hover {
+  background: #666;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Strategies</title>
+  <script>
+    const savedWidth = localStorage.getItem('leftPanelWidth');
+    const defaultWidth = 380;
+    const panelWidth = (savedWidth && !isNaN(savedWidth)) ? savedWidth : defaultWidth;
+    document.documentElement.style.setProperty('--left-panel-width', panelWidth + 'px');
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/css/card.css">
+  <link rel="stylesheet" href="/css/strategies-layout.css">
+  <link rel="stylesheet" href="css/strategies.css">
+</head>
+<body>
+  <div id="toast-container" class="toast-container"></div>
+  <!-- TOP NAVBAR -->
+  <div class="navbar">
+    <div class="brand">
+      <img src="/images/logo.png" alt="MakeMyTrade" class="site-logo" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="/">Dashboard</a></li>
+      <li><a href="#">Orders</a></li>
+      <li><a href="#">Holdings</a></li>
+      <li><a href="#">Positions</a></li>
+      <li><a href="#">Funds</a></li>
+      <li><button id="logoutBtn" class="logout-button">Logout</button></li>
+    </ul>
+  </div>
+
+  <!-- LEFT SIDEBAR (Watchlist) -->
+  <div class="sidebar">
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search eg: infy bse, nifty fut, index fund, etc." />
+    </div>
+    <ul class="watchlist">
+      <li><span>OIL</span> <span class="price-up">+2.32%</span></li>
+      <li><span>SENSEX</span> <span class="price-up">+1.77%</span></li>
+      <li><span>NIFTY BANK</span> <span class="price-down">-0.50%</span></li>
+      <li><span>CRUDEOIL APR 5500 CE</span> <span class="price-up">+1.15%</span></li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="main-content">
+    <div class="secondary-nav">
+      <a href="/">Dashboard</a>
+      <a href="/">Orders</a>
+      <a class="active" href="strategies.html">Strategies</a>
+      <a href="deployments.html">Deployments</a>
+      <a href="create_strategy.html">Create Strategy</a>
+    </div>
+
+    <h1>Available Strategies</h1>
+
+    <div class="main-flex-container">
+      <div class="left-panel" id="strategy-list"></div>
+      <div class="resizer" id="dragbar"><div class="middle-bar"></div></div>
+      <div class="right-panel">
+        <form id="strategy-form"></form>
+        <div id="save-button-wrapper" style="display: none;">
+          <button id="save-btn" class="pill-button">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deploy Modal Skeleton -->
+  <div id="deploy-modal" class="modal">
+    <div class="modal-content">
+      <h2>Deploy Strategy</h2>
+      <form id="deploy-form"></form>
+      <button id="deploy-submit">Deploy</button>
+      <button class="modal-close">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+  <script src="js/strategies.js"></script>
+
+  <script>
+    const resizer = document.getElementById('dragbar');
+    const leftPanel = document.getElementById('strategy-list');
+    const container = document.querySelector('.main-flex-container');
+
+    resizer.addEventListener('mousedown', startResize);
+    resizer.addEventListener('touchstart', startResize, { passive: false });
+
+    function startResize(e) {
+      e.preventDefault();
+      document.addEventListener('mousemove', resize);
+      document.addEventListener('mouseup', stopResize);
+      document.addEventListener('touchmove', resize, { passive: false });
+      document.addEventListener('touchend', stopResize);
+    }
+
+    function resize(e) {
+      e.preventDefault();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const newWidth = clientX - container.getBoundingClientRect().left;
+      if (newWidth >= 300) {
+        leftPanel.style.width = newWidth + 'px';
+         localStorage.setItem('leftPanelWidth', newWidth);
+      }
+    }
+
+    function stopResize() {
+      document.removeEventListener('mousemove', resize);
+      document.removeEventListener('mouseup', stopResize);
+      document.removeEventListener('touchmove', resize);
+      document.removeEventListener('touchend', stopResize);
+    }
+  </script>
+</body>
+</html>

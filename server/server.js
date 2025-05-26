@@ -1,6 +1,7 @@
 // server.js
 require('dotenv').config();
 
+const strategyRoutes = require('./strategyRoutes');
 const express       = require('express');
 const session       = require('express-session');
 const path          = require('path');
@@ -26,6 +27,7 @@ const io     = socketIo(server);
 // ——————————————————————————————
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 
 // Session (use only ONE instance)
@@ -89,6 +91,15 @@ app.use(express.static(path.join(__dirname, '..', 'public'), {
   index: false
 }));
 
+app.get('/create_strategy', (req, res) => {
+  if (!req.session.userId) {
+    return res.redirect('/login');
+  }
+  res.set('Cache-Control', 'no-store');
+  res.sendFile(path.join(__dirname, '..', 'public', 'create_strategy.html'));
+});
+
+
 app.get('/', (req, res) => {
   if (!req.session.userId) {
     return res.redirect('/login');
@@ -97,9 +108,25 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
+app.get('/strategies', (req, res) => {
+  if (!req.session.userId) {
+    return res.redirect('/login');
+  }
+  res.set('Cache-Control', 'no-store');
+  res.sendFile(path.join(__dirname, '..', 'public', 'strategies.html'));
+});
+
+app.get('/deployments', (req, res) => {
+  if (!req.session.userId) {
+    return res.redirect('/login');
+  }
+  res.set('Cache-Control', 'no-store');
+  res.sendFile(path.join(__dirname, '..', 'public', 'deployments.html'));
+});
 // ——————————————————————————————
 // Auth routes + real-time + error handler
 // ——————————————————————————————
+app.use('/api', strategyRoutes);
 app.use('/', authRoutes);
 
 socketHandler(io);

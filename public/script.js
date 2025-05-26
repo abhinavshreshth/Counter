@@ -191,6 +191,11 @@ document.getElementById('loginForm')?.addEventListener('submit', async e => {
 // Logout
 // ——————————————————————————————
 const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('leftPanelWidth');
+  });
+}
 logoutBtn?.addEventListener('click', () => {
   window.location.href = '/logout';
 });
@@ -313,7 +318,7 @@ function showOrderToast({ status, payload, id }) {
 
   if (s==="cancelled") { title="Cancelled"; cls="toast-blue";   msg=`${payload.symbol} order was cancelled.`; }
   else if (s==="rejected")  { title="Rejected";  cls="toast-red";    msg=`${payload.side.toUpperCase()} ${payload.symbol} was rejected.`; }
-  else if (s==="complete")  { title="Complete";  cls="toast-green";  msg=`${payload.symbol} executed successfully.`; }
+  else if (s==="filled")  { title="Complete";  cls="toast-green";  msg=`${payload.symbol} executed successfully.`; }
   else if (s==="pending")   { title="Placed";    cls="toast-orange"; msg=`${payload.side.toUpperCase()} ${payload.symbol} is pending.`; }
 
   const t = document.createElement("div");

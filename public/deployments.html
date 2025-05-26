@@ -1,26 +1,25 @@
-<!-- /public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MakeMyTrade</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deployments</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/css/card.css">
 </head>
 <body>
 
   <!-- TOP NAVBAR -->
   <div class="navbar">
-    <!-- <div class="brand">MakeMyTrade</div> -->
     <div class="brand">
-    <img src="/images/logo.png" alt="MakeMyTrade" class="site-logo" />
+      <img src="/images/logo.png" alt="MakeMyTrade" class="site-logo" />
     </div>
     <ul class="nav-links">
       <li><a href="/">Dashboard</a></li>
-      <li><a class="active" href="#">Orders</a></li>
+      <li><a href="#">Orders</a></li>
       <li><a href="#">Holdings</a></li>
       <li><a href="#">Positions</a></li>
       <li><a href="#">Funds</a></li>
-      <!-- Single Logout button -->
       <li>
         <button id="logoutBtn" class="logout-button">Logout</button>
       </li>
@@ -44,42 +43,34 @@
   <div class="main-content">
     <div class="secondary-nav">
       <a href="/">Dashboard</a>
-      <a class="active" href="#">Orders</a>
+      <a href="/">Orders</a>
       <a href="strategies.html">Strategies</a>
-      <a href="deployments.html">Deployments</a>
+      <a class="active" href="deployments.html">Deployments</a>
       <a href="create_strategy.html">Create Strategy</a>
     </div>
 
-    <div class="orders-header">
-      <h2>Trades</h2>
-      <div class="orders-actions">
-        <input type="text" placeholder="Search" class="orders-search" />
-        <button class="download-btn">Download</button>
-      </div>
+    <h1>My Deployments</h1>
+
+    <div id="deployments-container">
+      <p>Loading deployments…</p>
     </div>
 
-    <table class="trades-table">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Type</th>
-          <th>Instrument</th>
-          <th>Product</th>
-          <th>Qty</th>
-          <th>Price</th>
-          <th>Avg.</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody id="ordersTableBody">
-        <!-- Rows get injected here -->
-      </tbody>
-    </table>
+    <!-- Edit Modal Skeleton -->
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <h2>Edit Deployment</h2>
+        <form id="edit-form">
+          <!-- fields added in Phase 2 -->
+        </form>
+        <button id="edit-submit">Save</button>
+        <button class="modal-close">Cancel</button>
+      </div>
+    </div>
   </div>
 
+  <!-- Scripts -->
   <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
-  <div id="toast-container"></div>
-
+  <script src="js/deployments.js"></script>
 </body>
 </html>

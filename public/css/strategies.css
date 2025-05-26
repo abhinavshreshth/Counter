@@ -1,0 +1,261 @@
+:root {
+  --radius: 6px;
+}
+
+.strategy-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  min-height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* subtle base */
+}
+
+.strategy-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* material-like hover */
+  transform: translateY(-2px); /* gentle lift */
+}
+
+.strategy-card.expanded {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.card-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* === Pill Buttons === */
+
+.pill-button {
+  border: none;
+  padding: 0.35rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease;
+}
+
+/* .pill-button:active {
+  transform:matrix(0.95); ;
+  box-shadow: inset 0 0.1px 0.5px rgba(0, 0, 0, 0.1);
+} */
+
+.pill-button:hover {
+  opacity: 0.95;
+}
+
+/* Properties Button */
+.pill-button.properties {
+  background-color: #e7f1ff;
+  color: #007bff;
+}
+.pill-button.properties:hover {
+  background-color: #d4e8ff;
+}
+
+/* Deploy Button */
+.pill-button.deploy {
+  background-color: #e6ffe7;
+  color: #28a745;
+}
+.pill-button.deploy:hover {
+  background-color: #cdf5d1;
+}
+
+/* Description */
+.strategy-description {
+  display: none;
+  margin-top: 0.75rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+.strategy-card.expanded .strategy-description {
+  display: block;
+}
+
+.strategy-card.active {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  border-color: #007bff;
+}
+
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #007bff;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+#strategy-form h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+button[type="submit"],
+button.save-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.55rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+button[type="submit"]:hover,
+button.save-button:hover {
+  background-color: #0056b3;
+}
+
+.strategy-card.active {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  border-color: #007bff;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group select::placeholder {
+  color: #aaa;
+}
+
+/* === Toggle Switch === */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: #28a745;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+.left-panel {
+  width: var(--left-panel-width, 380px); /* fallback to 380px if variable not set */
+  min-width: 300px;
+}
+
+button.loading {
+  pointer-events: none;
+  opacity: 0.7; /* or remove this too if you want no visual change */
+}
+
+.toast-container {
+  position: fixed;
+  top: 4rem;
+  right: 1rem;
+  z-index: 9999;
+}
+.toast {
+  background-color: #333;
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.toast.success {
+  background-color: #ffffff; color: #333;
+  border-left: 5px solid #28a746db; 
+}
+.toast.error {
+  background-color: #ffffff; color: #333;
+  border-left: 5px solid #dc3545;
+}
+.toast.warning {
+   background-color: #ffffff; color: #333;
+  border-left: 5px solid #ffc107;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

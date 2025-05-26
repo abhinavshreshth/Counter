@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create Strategy</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/css/card.css" />
+  <link rel="stylesheet" href="/css/create_strategy.css" />
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <div class="navbar">
+    <div class="brand">
+      <img src="/images/logo.png" alt="MakeMyTrade" class="site-logo" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="/">Dashboard</a></li>
+      <li><a href="#">Orders</a></li>
+      <li><a href="#">Holdings</a></li>
+      <li><a href="#">Positions</a></li>
+      <li><a href="#">Funds</a></li>
+      <li>
+        <button id="logoutBtn" class="logout-button">Logout</button>
+      </li>
+    </ul>
+  </div>
+
+    <div class="sidebar">
+    <div class="sidebar-search">
+        <input type="text" placeholder="Search eg: infy bse, nifty fut, index fund, etc." />
+    </div>
+    <ul class="watchlist">
+        <li><span>OIL</span> <span class="price-up">+2.32%</span></li>
+        <li><span>SENSEX</span> <span class="price-up">+1.77%</span></li>
+        <li><span>NIFTY BANK</span> <span class="price-down">-0.50%</span></li>
+        <li><span>CRUDEOIL APR 5500 CE</span> <span class="price-up">+1.15%</span></li>
+    </ul>
+    </div>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="main-content">
+    <div class="secondary-nav">
+      <a href="/">Dashboard</a>
+      <a href="/">Orders</a>
+      <a href="strategies.html">Strategies</a>
+      <a href="deployments.html">Deployments</a>
+      <a class="active" href="create_strategy.html">Create Strategy</a>
+    </div>
+
+    <h1>Create New Strategy</h1>
+
+    <div class="form-group">
+      <label><strong>Strategy Name:</strong></label><br />
+      <input type="text" id="strategy-name" placeholder="e.g. Breakout Strategy" style="width: 50%;" />
+    </div>
+
+    <div class="form-group">
+      <label><strong>Description:</strong></label><br />
+      <textarea id="strategy-desc" rows="3" placeholder="Describe the strategy..." style="width: 70%;"></textarea>
+    </div>
+
+    <h3>Parameters</h3>
+    <table id="fields-table">
+      <thead>
+        <tr>
+          <th>↕</th>
+          <th>Key</th>
+          <th>Label</th>
+          <th>Type</th>
+          <th>Options (comma-separated)</th>
+          <th>Default</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody id="fields-body">
+        <!-- rows will be added dynamically -->
+      </tbody>
+    </table>
+
+    <div class="button-group">
+    <button type="button" class="btn btn-outline" onclick="addFieldRow()">
+        <span class="btn-icon">＋</span> Add Field
+    </button>
+    <button type="button" class="btn btn-primary" onclick="submitStrategy()">
+        <span class="btn-icon"></span> Create Strategy
+    </button>
+    </div>
+  </div>
+
+  <!-- JS Script -->
+  <script src="js/create_strategy.js" defer></script>
+  <script src="script.js" defer></script>
+  <div id="toast" class="toast-container"></div>
+</body>
+</html>
