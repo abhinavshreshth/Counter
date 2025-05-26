@@ -35,8 +35,8 @@ const tableDefinitions = [
      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`,
 
-  // index on order_logs
-  `CREATE INDEX IF NOT EXISTS idx_order_user ON order_logs(user_id, status);`,
+  `CREATE INDEX IF NOT EXISTS idx_order_user
+     ON order_logs(user_id, status);`,
 
   // 4. strategies
   `CREATE TABLE IF NOT EXISTS strategies (
@@ -45,7 +45,7 @@ const tableDefinitions = [
      description TEXT
   );`,
 
-  // 4a. unique index to back ON CONFLICT(name)
+  // 4a. unique index so ON CONFLICT(name) works
   `CREATE UNIQUE INDEX IF NOT EXISTS idx_strategies_name
      ON strategies(name);`,
 
@@ -58,6 +58,10 @@ const tableDefinitions = [
      options TEXT[],
      data_type TEXT
   );`,
+
+  // 5a. unique index so ON CONFLICT(field_key) works
+  `CREATE UNIQUE INDEX IF NOT EXISTS idx_field_definitions_key
+     ON field_definitions(field_key);`,
 
   // 6. strategy_field_values
   `CREATE TABLE IF NOT EXISTS strategy_field_values (
@@ -95,7 +99,7 @@ async function initDatabase() {
       const objectName = nameMatch ? nameMatch[1] : '<unknown>';
       console.log(`✅ Ensured existence of: ${objectName}`);
     } catch (err) {
-      console.error('❌ Error creating table or index:', err.message);
+      console.error('❌ Error creating table/index:', err.message);
       throw err;
     }
   }
