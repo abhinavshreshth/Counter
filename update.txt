@@ -1,6 +1,10 @@
 Gprc work kr rha hai
 bss frontend se gprc se users ka object banana hai c++ me
 
+<<<<<<< HEAD
 
 
 update 3
+=======
+update1
+>>>>>>> 92c5de7d0bc0508770e5165d392e554c3f10acac
