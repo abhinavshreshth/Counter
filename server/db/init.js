@@ -38,12 +38,16 @@ const tableDefinitions = [
   // index on order_logs
   `CREATE INDEX IF NOT EXISTS idx_order_user ON order_logs(user_id, status);`,
 
-  // 4. strategies (name is now UNIQUE)
+  // 4. strategies
   `CREATE TABLE IF NOT EXISTS strategies (
      id SERIAL PRIMARY KEY,
-     name TEXT NOT NULL UNIQUE,
+     name TEXT NOT NULL,
      description TEXT
   );`,
+
+  // 4a. unique index to back ON CONFLICT(name)
+  `CREATE UNIQUE INDEX IF NOT EXISTS idx_strategies_name
+     ON strategies(name);`,
 
   // 5. field_definitions
   `CREATE TABLE IF NOT EXISTS field_definitions (
@@ -91,7 +95,7 @@ async function initDatabase() {
       const objectName = nameMatch ? nameMatch[1] : '<unknown>';
       console.log(`✅ Ensured existence of: ${objectName}`);
     } catch (err) {
-      console.error('❌ Error creating table:', err.message);
+      console.error('❌ Error creating table or index:', err.message);
       throw err;
     }
   }
