@@ -9,7 +9,13 @@ function addFieldRow(data = {}) {
   tr.setAttribute("draggable", "true");
 
 tr.innerHTML = `
-  <td class="drag-handle">↕</td>
+  <td class="drag-handle">
+  <div class="handle-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  </td>
   <td><input type="text" class="field-key"   value="${data.field_key   || ''}" required></td>
   <td><input type="text" class="field-label" value="${data.label       || ''}" required></td>
   <td>
