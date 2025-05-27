@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  
+  <!-- 1) Default viewport for desktops -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- 2) Override to fixed 1024px on real mobiles/tablets -->
+  <script>
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      document.write('<meta name="viewport" content="width=1024">');
+    }
+  </script>
   <title>Create Strategy</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="/css/card.css" />
