@@ -71,13 +71,6 @@ textarea {
   color: #444;
 }
 
-.drag-handle {
-  cursor: grab;
-  font-size: 16px;
-  text-align: center;
-  color: #999;
-}
-
 .field-row:hover {
   background-color: #fefefe;
 }
@@ -320,4 +313,50 @@ input[type="checkbox"].toggle:checked::before {
   10% { opacity: 1; transform: translateY(0); }
   90% { opacity: 1; transform: translateY(0); }
   100% { opacity: 0; transform: translateY(20px); }
+}
+
+/* === Default desktop look === */
+.drag-handle {
+  cursor: move;
+  width: 24px;
+  text-align: center;
+  padding-left: 6px;
+}
+
+.handle-icon {
+  display: inline-block;
+  padding: 4px 0;
+  width: 100%;
+}
+
+.handle-icon span {
+  display: block;
+  width: 14px;
+  height: 2px;
+  margin: 2px auto;
+  background-color: #bbb;
+  border-radius: 1px;
+  transition: background-color 0.2s ease;
+}
+
+.drag-handle:hover .handle-icon span {
+  background-color: #888;
+}
+
+/* === Scoped mobile override === */
+.mobile-view .drag-handle {
+  width: 30px;
+  min-width: 30px;
+  height: 32px;
+  padding: 0;
+  display: table-cell;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+.mobile-view #fields-table th:nth-child(1),
+.mobile-view #fields-table td:nth-child(1) {
+  min-width: 30px;
+  width: 30px;
+  text-align: center;
 }
