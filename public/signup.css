@@ -295,8 +295,8 @@ fieldset {
 }
 .signup-header .site-logo {
   max-width: 320px;   /* ↑ increase this (was 240px) */
-  width: 100%;
-  height: auto;
+  width: 90%;
+  height: 120px;
   display: block;
   margin: 0 auto;
 }
