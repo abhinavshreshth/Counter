@@ -19,7 +19,7 @@ body.login-body {
 }
 
 .login-container h2 {
-  color: #4caf50;
+  color: #fb773a;
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
 }
@@ -42,7 +42,7 @@ body.login-body {
 .login-container button {
   box-sizing: border-box;
   width: 100%;
-  background-color: #4caf50;
+  background-color: #fb773a;
   color: #fff;
   padding: 0.6rem;
   border: none;
@@ -54,7 +54,7 @@ body.login-body {
 }
 
 .login-container button:hover {
-  background-color: #4caf50;
+  background-color: #fb773a;
 }
 /* login and signup effect */
 /* Toast container sits in the top‑right */
@@ -88,7 +88,7 @@ body.login-body {
 
 /* Error variant */
 .toast.error {
-  background: #4caf50;
+  background: #fb773a;
 }
 
 /* Success variant (if you need it) */
@@ -112,7 +112,7 @@ body.login-body {
     .login-container button {
       box-sizing: border-box;
       width: 100%;
-      background-color: #4caf50;
+      background-color: #fb773a;
       color: #fff;
       padding: 0.6rem;
       border: none;
@@ -130,16 +130,16 @@ body.login-body {
       color: #555;
   }
   .signup-link a {
-      color: #4caf50;
+      color: #fb773a;
       font-weight: 600;
       text-decoration: none;
       padding: 0.2rem 0.6rem;
-      border: 1px solid #4caf50;
+      border: 1px solid #fb773a;
       border-radius: 4px;
       transition: background-color 0.2s ease, color 0.2s ease;
   }
   .signup-link a:hover {
-      background-color: #4caf50;
+      background-color: #fb773a;
       color: #fff;
   }
   /* ↑↑↑ end insert ↑↑↑ */
@@ -227,12 +227,12 @@ to { transform: translateY(-50%) rotate(360deg); }
   border-radius: 4px;
   border: none;
   cursor: pointer;
-  background: #4caf50;
+  background: #fb773a;
   color: #fff;
   transition: background-color 0.2s ease;
 }
 .step-buttons button:hover {
-  background: #4caf50;
+  background: #fb773a;
 }
 
 /* Shake on validation error */

@@ -1,0 +1,236 @@
+/* /public/shared-styles.css */
+
+/* ─── BODY & CONTAINER ────────────────────────────────────────── */
+body.login-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #f8f8f8;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 320px;
+}
+
+/* ─── HEADER & LOGO ────────────────────────────────────────── */
+.form-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.site-logo {
+    width: 275px;
+    height: auto;
+}
+
+/* ─── FORM ELEMENTS ────────────────────────────────────────── */
+.login-container h2 {
+    color: #fa5f2e;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.login-container input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.login-container button {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #fa5f2e;
+    color: #fff;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.login-container button:hover {
+    background-color: #e14f1e;
+}
+
+/* ─── SIGNUP/LOGIN LINK ────────────────────────────────────────── */
+.signup-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.signup-link a {
+    color: #fa5f2e;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid #fa5f2e;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.signup-link a:hover {
+    background-color: #fa5f2e;
+    color: #fff;
+}
+
+/* ─── CAPTCHA BOX ────────────────────────────────────────── */
+.captcha-box {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.captcha-box label {
+    flex: 1;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    color: #555555;
+    margin-right: 0.5rem;
+}
+
+.captcha-box input {
+    width: 6rem;
+    margin: 0 0.5rem;
+    padding: 0.4rem;
+}
+
+.captcha-box button { /* Refresh button base */
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+#login-refreshCaptcha { /* Refresh button color override */
+    background-color: #fa5f2e;
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    line-height: 0.45;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#login-refreshCaptcha:hover {
+    background-color: #e15822;
+}
+
+/* ─── ANIMATIONS & EFFECTS ─────────────────────────────────── */
+/* Toast Notifications */
+#toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.toast {
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.375rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: auto;
+}
+
+.toast.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.error { background: #e74c3c; }
+.toast.success { background: #27ae60; }
+
+/* Input Shake Animation */
+.shake {
+    animation: shake 0.5s;
+    border-color: red;
+}
+
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    50% { transform: translateX(6px); }
+    75% { transform: translateX(-4px); }
+}
+
+/* Button Loading Spinner */
+.button-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.button-loading::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid white;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    transform: translateY(-50%);
+}
+
+@keyframes spin {
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Success Checkmark Animation */
+.success-checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: none;
+    margin: 20px auto;
+    position: relative;
+    border: 4px solid #4CAF50;
+    animation: pop 0.5s ease-out forwards;
+}
+
+.success-checkmark:after {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 40px;
+    width: 12px;
+    height: 24px;
+    border: solid #4CAF50;
+    border-width: 0 4px 4px 0;
+    transform: rotate(45deg);
+    animation: draw 0.5s ease-out 0.3s forwards; /* Added a small delay */
+}
+
+@keyframes pop {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes draw {
+    from { height: 0; opacity: 0; }
+    to { height: 24px; opacity: 1; }
+}
