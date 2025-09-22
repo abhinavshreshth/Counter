@@ -1,0 +1,42 @@
+
+ssh -i "D:/My Personal Projects/CPP/Counter/makemytrade-key.pem" ubuntu@51.20.141.41
+ssh -i "D:/My Personal Projects/CPP/Counter/makemytrade-key.pem" ubuntu@13.50.71.13
+
+cd ~/CounterDeploy
+cd ~/CounterDeploy/gitrepo/Counter
+
+cd build
+cmake ..
+./Counter
+
+cd ~/CounterDeploy
+npm install
+npm start
+make
+
+pm2 start server/server.js --name algothrust-v2
+pm2 list
+pm2 start server.js --name algothrust
+pm2 stop makemytrade
+
+______________________________________________________
+Counter    backend              node_modules       package.json  server  tests
+README.md  makemytrade-key.pem  package-lock.json  public        sql     update.txt
+ubuntu@ip-172-31-26-80:~/CounterDeploy/gitrepo/Counter$ npm start
+_____________________________________________________________________
+
+
+cd build
+pm2 start ./Counter --name cpp-backend
+pm2 startup
+pm2 save
+
+nano main.cpp ubuntu@ip-172-31-26-80:~$ sudo -i -u postgres
+postgres@ip-172-31-26-80:~$ psql
+postgres=# \l
+postgres=# \c makemytrade
+postgres=# \dt
+postgres=# SELECT * FROM users;
+
+// to update aws using git 
+git pull origin main 
