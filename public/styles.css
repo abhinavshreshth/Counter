@@ -295,10 +295,10 @@
   
 
   .site-logo {
-    max-height: 2.2rem;    /* ~40px if 1rem = 16px */
-       width: auto;
-       vertical-align: middle;
-   }
+    width: 150px;   /* adjust as needed */
+    height: auto;
+    vertical-align: middle;
+  }
   
    .button-loading {
     position: relative;
