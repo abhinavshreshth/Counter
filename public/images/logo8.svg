@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.52 44.37">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e7430c;
+      }
+
+      .cls-2 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-3 {
+        fill: #3b3b3a;
+        font-family: SofiaPro-SemiBold, 'Sofia Pro';
+        font-size: 36px;
+        font-weight: 600;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M25.14,7.47c5.13,4.22,10.26,8.45,15.38,12.67.1.08.19.16.29.24v18.63c-5.22-3.65-10.45-7.3-15.67-10.95-5.22,3.7-10.45,7.41-15.67,11.11v-18.79c5.22-4.3,10.45-8.61,15.67-12.91Z"/>
+  <text class="cls-3" transform="translate(50.59 33.79)"><tspan x="0" y="0">Algo</tspan></text>
+  <text class="cls-3" transform="translate(122.3 34.51)"><tspan x="0" y="0">Thrus</tspan><tspan class="cls-2" x="93.31" y="0">t</tspan></text>
+</svg>

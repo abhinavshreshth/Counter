@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225.75 43.08">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e7430c;
+      }
+
+      .cls-2 {
+        font-family: Bahnschrift-SemiBold, Bahnschrift;
+        font-size: 38.27px;
+        font-variation-settings: 'wght' 600, 'wdth' 100;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        fill: #3b3b3a;
+        font-weight: 600;
+      }
+
+      .cls-7 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6 {
+        font-family: SofiaPro-SemiBold, 'Sofia Pro';
+        font-size: 37.44px;
+      }
+
+      .cls-4 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-5 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.03em;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M21.99.51c6.01,4.93,12.02,9.85,18.02,14.78.11.09.23.19.34.28v21.73c-6.12-4.26-12.24-8.51-18.36-12.77-6.12,4.32-12.24,8.64-18.36,12.96V15.57C9.74,10.55,15.86,5.53,21.99.51Z"/>
+  <text class="cls-6" transform="translate(47.89 32.35)"><tspan x="0" y="0">A</tspan></text>
+  <text class="cls-3" transform="translate(72.38 32.35)"><tspan x="0" y="0">l</tspan></text>
+  <text class="cls-3" transform="translate(81.03 32.35)"><tspan x="0" y="0">g</tspan></text>
+  <text class="cls-3" transform="translate(103.2 32.35)"><tspan x="0" y="0">o</tspan></text>
+  <text class="cls-4" transform="translate(119.81 32.35)"><tspan x="0" y="0">T</tspan></text>
+  <text class="cls-3" transform="translate(140.21 32.72)"><tspan x="0" y="0">h</tspan></text>
+  <text class="cls-5" transform="translate(160.71 32.69)"><tspan x="0" y="0">r</tspan></text>
+  <text class="cls-3" transform="translate(176.48 32.72)"><tspan x="0" y="0">u</tspan></text>
+  <text class="cls-3" transform="translate(196.29 32.72)"><tspan x="0" y="0">s</tspan></text>
+  <text class="cls-2" transform="translate(212.45 32.72) scale(1.07 1)"><tspan x="0" y="0">t</tspan></text>
+  <rect class="cls-7" x="45.57" y="2.19" width="173.35" height="4.02"/>
+</svg>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.19 46.31">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e7430c;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        fill: #3b3b3a;
+      }
+
+      .cls-3 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        font-family: SofiaPro-SemiBold, 'Sofia Pro';
+        font-size: 37.44px;
+        font-weight: 600;
+      }
+
+      .cls-5 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-7 {
+        letter-spacing: -.03em;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M22.09,0c7.23,5.95,14.45,11.9,21.68,17.84.14.11.27.22.41.34v26.23c-7.36-5.14-14.73-10.28-22.09-15.42-7.36,5.22-14.73,10.43-22.09,15.65v-26.46C7.36,12.12,14.73,6.06,22.09,0Z"/>
+  <text class="cls-7" transform="translate(52.97 35.71)"><tspan x="0" y="0">A</tspan></text>
+  <text class="cls-4" transform="translate(77.45 35.71)"><tspan x="0" y="0">l</tspan></text>
+  <text class="cls-4" transform="translate(85.27 35.72)"><tspan x="0" y="0">g</tspan></text>
+  <text class="cls-4" transform="translate(105.56 35.71)"><tspan x="0" y="0">o</tspan></text>
+  <text class="cls-5" transform="translate(122.22 35.71)"><tspan x="0" y="0">T</tspan></text>
+  <text class="cls-4" transform="translate(141.57 35.71)"><tspan x="0" y="0">h</tspan></text>
+  <text class="cls-6" transform="translate(160.85 35.71)"><tspan x="0" y="0">r</tspan></text>
+  <text class="cls-4" transform="translate(175.83 36.05)"><tspan x="0" y="0">u</tspan></text>
+  <text class="cls-4" transform="translate(194.47 35.72)"><tspan x="0" y="0">s</tspan></text>
+  <text class="cls-3" transform="translate(210.01 36.05)"><tspan x="0" y="0">t</tspan></text>
+  <rect class="cls-2" x="222.63" y="30.62" width="4.55" height="4.55"/>
+</svg>

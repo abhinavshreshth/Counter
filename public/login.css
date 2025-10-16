@@ -11,18 +11,37 @@ body.login-body {
 
 .login-container {
     background-color: #ffffff;
-    padding: 2rem 2.5rem;
+    padding: 1.5rem 2.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: 1px solid #f1f1f1;              /* added subtle border */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* softer, more realistic depth */
     text-align: center;
     width: 320px;
+    transform: translateY(-30px);
 }
 
-.login-container h2 {
-    color: #fa5f2e;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+.login-container:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
 }
+
+
+.login-container h2 {
+  color: #2d2d2d;   /* keep the heading neutral */
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+
+/* keep your centered title style for other uses (if needed) */
+.login-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333333;
+  margin: 8px 0 10px;
+  letter-spacing: 0.2px;
+}
+
 
 /* Inputs */
 .login-container input {
@@ -295,16 +314,42 @@ body.login-body {
   animation: spin 0.6s linear infinite;
 }
 
-/* ─── HEADER & LOGO ────────────────────────────────────────── */
-.form-header {
-    text-align: center;
-    margin-bottom: 25px;
+/* ── Microsoft-style stacked header ───────────────────────────── */
+.form-header.stacked-header {
+  text-align: left;
+  margin-bottom: 18px;
+  padding-left: 2px; /* aligns perfectly with input boxes */
 }
 
-.site-logo {
-    width: 275px;
-    height: auto;
+
+.site-logo.site-logo--stacked {
+  width: 140px;          /* Increased from 115px → perfect balance */
+  height: auto;
+  display: block;
+  margin: 0 0 14px 2px;  /* Slightly more breathing space below */
 }
+
+.login-title.login-title--stacked {
+  font-size: 1.55rem;     /* slightly larger */
+  font-weight: 700;
+  color: #1e1e1e;         /* slightly darker tone */
+  margin: 0 0 4px 0;
+  text-align: left;
+}
+
+
+
+
+
+/* keep other logo usage unaffected */
+.site-logo {
+  /* fallback / original rules preserved for other places if any */
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 
 
 @keyframes spin {
