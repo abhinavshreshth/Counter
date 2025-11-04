@@ -34,7 +34,6 @@ document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
   const username        = form.username.value.trim();
   const password        = form.password.value;
   const confirmPassword = form.confirmPassword.value;
-  const captchaAnswer   = parseInt(form.captchaAnswer.value, 10);
 
   // 1) Client‑side checks
   if (!username || password.length < 6) {
@@ -45,11 +44,6 @@ document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
   }
   if (password !== confirmPassword) {
     showAuthToast('Passwords do not match!', 'error');
-    return;
-  }
-  if (captchaAnswer !== a + b) {
-    showAuthToast('CAPTCHA incorrect.', 'error');
-    generateCaptcha();
     return;
   }
 
@@ -86,7 +80,6 @@ document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
       showAuthToast(result.message || 'Signup failed', 'error');
       signupBtn.classList.remove('button-loading');
       signupBtn.disabled = false;
-      generateCaptcha();
     }
 
   } catch (err) {
@@ -97,31 +90,22 @@ document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
     showAuthToast('Server error—please try again later.', 'error');
     signupBtn.classList.remove('button-loading');
     signupBtn.disabled = false;
-    generateCaptcha();
   }
 });
 
 // ─── LOGIN CAPTCHA LOGIC START ─────────────────────────────────
-let loginA, loginB;
 
-async function generateLoginCaptcha() {
-  const res = await fetch('/captcha');
-  const { a, b } = await res.json();
-  loginA = a;
-  loginB = b;
-  document.getElementById('login-captcha-label').innerText =
-    `Captcha: ${a} + ${b} = ?`;
+function generateLoginCaptcha() {
+  const img = document.getElementById('captchaImage');
+  if (img) {
+    img.src = '/captcha?' + Date.now(); // fetch fresh SVG
+  }
   document.getElementById('loginCaptchaAnswer').value = '';
 }
-
-
 window.addEventListener('load', generateLoginCaptcha);
 document.getElementById('login-refreshCaptcha')?.addEventListener('click', generateLoginCaptcha);
 
-// ─── LOGIN CAPTCHA LOGIC END ────────────────────────────────────
-
-// ——————————————————————————————
-// LOGIN: Combined CAPTCHA + AJAX Handler
+// LOGIN: Combined CAPTCHA + AJAX Handler (SVG-based)
 // ——————————————————————————————
 document.getElementById('loginForm')?.addEventListener('submit', async e => {
   e.preventDefault();
@@ -129,45 +113,42 @@ document.getElementById('loginForm')?.addEventListener('submit', async e => {
   const form     = e.target;
   const loginBtn = form.querySelector('button[type="submit"]');
 
-  // 1) CAPTCHA check
-  const ans = parseInt(document.getElementById('loginCaptchaAnswer').value, 10);
-  if (ans !== loginA + loginB) {
-    showAuthToast('Please solve the captcha correctly', 'error');
-    generateLoginCaptcha();
-    return;
-  }
-
-  // 2) Username/password length check
+  // Username/password validation
   const uname = form.username.value.trim();
   const pwd   = form.password.value;
+  const captchaValue = document.getElementById('loginCaptchaAnswer').value.trim();
+  console.log('🧩 Captcha value entered by user:', captchaValue);
+
+
   if (!uname || pwd.length < 6) {
-    showAuthToast(
-      'Username cannot be empty and password must be at least 6 characters',
-      'error'
-    );
+    showAuthToast('Username cannot be empty and password must be at least 6 characters', 'error');
+    return;
+  }
+  if (!captchaValue) {
+    showAuthToast('Please enter the CAPTCHA', 'error');
     return;
   }
 
-  // ✅ Start spinner
+  // Start spinner
   loginBtn.classList.add('button-loading');
   loginBtn.disabled = true;
 
-  // 3) AJAX login request
   try {
     const res = await fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
       body: JSON.stringify({
         username: uname,
         password: pwd,
-        captchaAnswer: document.getElementById('loginCaptchaAnswer').value
+        captcha: captchaValue
       })
     });
 
     const body = await res.json();
 
     if (res.ok && body.success) {
-      // spinner remains visible, delay before redirect
+      console.log('✅ Login successful');
       setTimeout(() => (window.location.href = '/'), 550);
     } else {
       showAuthToast('Login failed: ' + (body.message || 'Invalid credentials'), 'error');
@@ -186,6 +167,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async e => {
     loginBtn.disabled = false;
   }
 });
+
 
 // ——————————————————————————————
 // Logout
@@ -327,4 +309,3 @@ function showOrderToast({ status, payload, id }) {
   document.getElementById("toast-container").appendChild(t);
   setTimeout(()=>t.remove(),4000);
 }
-window.addEventListener('load', generateLoginCaptcha);

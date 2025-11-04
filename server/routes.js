@@ -12,7 +12,6 @@ const captchaRoute = require('./auth/captcha');
 router.post('/login',  rateLimiter, loginHandler);
 router.post('/signup', rateLimiter, signupHandler);
 router.get('/logout', logoutHandler);
-router.get('/captcha', captchaRoute);
 
 
 module.exports = router;

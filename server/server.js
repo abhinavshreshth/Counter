@@ -2,25 +2,25 @@
 require('dotenv').config();
 
 const strategyRoutes = require('./strategyRoutes');
-const express       = require('express');
-const session       = require('express-session');
-const path          = require('path');
-const http          = require('http');
-const socketIo      = require('socket.io');
+const express = require('express');
+const session = require('express-session');
+const path = require('path');
+const http = require('http');
+const socketIo = require('socket.io');
 
-const authRoutes    = require('./routes');
-const captchaRoute  = require('./auth/captcha');
+const authRoutes = require('./routes');
+const captchaRoute = require('./auth/captcha');
 const socketHandler = require('./socket/socketHandler');
-const zmqReceiver   = require('./zmq/receiver');
-const errorHandler  = require('./middleware/errorHandler');
+const zmqReceiver = require('./zmq/receiver');
+const errorHandler = require('./middleware/errorHandler');
 
-const pool          = require('./db/pg');
-const sessionStore  = require('./db/sessionStore');
-const initDatabase  = require('./db/init');
+const pool = require('./db/pg');
+const sessionStore = require('./db/sessionStore');
+const initDatabase = require('./db/init');
 
-const app    = express();
+const app = express();
 const server = http.createServer(app);
-const io     = socketIo(server);
+const io = socketIo(server);
 
 // ——————————————————————————————
 // Middleware Setup
@@ -52,7 +52,7 @@ app.use('/captcha', captchaRoute); // ✅ Now /captcha will work!
 // ——————————————————————————————
 // Route Guards and Pretty Redirects
 // ——————————————————————————————
-app.use(['/login.html','/signup.html'], (req, res, next) => {
+app.use(['/login.html', '/signup.html'], (req, res, next) => {
   if (req.session.userId) {
     return res.redirect('/');
   }
