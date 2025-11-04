@@ -25,6 +25,7 @@ const io = socketIo(server);
 // ——————————————————————————————
 // Middleware Setup
 // ——————————————————————————————
+app.set('trust proxy', 1);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
