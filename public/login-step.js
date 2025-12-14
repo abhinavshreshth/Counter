@@ -31,14 +31,23 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // STEP 2 → STEP 1
+  // STEP 2 → STEP 1
   backBtn.onclick = () => {
     step2.style.display = "none";
     step1.style.display = "block";
+
+    // Clear password
+    if (passwordInput) {
+      passwordInput.value = "";
+      passwordInput.type = "password";
+    }
   };
 
-  // CAPTCHA Refresh
-  refreshCaptcha.onclick = () => {
-    captchaImage.src = "/captcha?t=" + Date.now();
-  };
+  // CAPTCHA Refresh (safe)
+  if (refreshCaptcha && captchaImage) {
+    refreshCaptcha.onclick = () => {
+      captchaImage.src = "/captcha?t=" + Date.now();
+    };
+  }
 
 });
