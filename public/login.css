@@ -203,12 +203,14 @@
 
 
 .captcha-img {
-  width: 120px;
-  height: 40px;
+  width: 100%;
+  height: 38px;
   border: 1px solid #ccc;
   background: #f2f2f2;
-  border-radius: 0px;
+  border-radius: 0;
+  object-fit: contain;
 }
+
 
 .captcha-input {
   flex: 1;
