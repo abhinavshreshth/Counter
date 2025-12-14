@@ -157,12 +157,12 @@
 }
 
 .form .button_row .primary_button {
-  background-color: #0067b8;
+  background-color: #f78412;
   color: #ffffff;
 }
 
 .form .button_row .primary_button:hover {
-  background-color: #005da6;
+  background-color: #ec8748;
 }
 
 /* ------------------------------------------------------ STEP 2 — PASSWORD + CAPTCHA ADDITIONS ------------------------------------------------------ */
@@ -239,7 +239,7 @@
   width: 36px;
   height: 36px;
 
-  background-color: #0067b8;
+  background-color: #979797;
   color: #ffffff;
 
   border: none;
@@ -256,7 +256,7 @@
 }
 
 .refresh-btn:hover {
-  background-color: #005da6;
+  background-color: #565656;
 }
 
 /* ------------------------------------------------------ PAGE LAYOUT — MICROSOFT STYLE (This is the part your original CSS did NOT include) ------------------------------------------------------ */
