@@ -30,8 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     step2.style.display = "block";
   };
 
-  // STEP 2 → STEP 1
-  // STEP 2 → STEP 1
+    // STEP 2 → STEP 1
   backBtn.onclick = () => {
     step2.style.display = "none";
     step1.style.display = "block";
