@@ -197,7 +197,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 100%;
+  flex: 1;
 }
 
 
@@ -216,7 +216,6 @@
   flex: 1;
   height: 36px;
   padding: 0 10px;
-
   border: 1px solid #b3b3b3;
   border-radius: 0;
 
@@ -229,6 +228,7 @@
 
   appearance: none;
   -webkit-appearance: none;
+  min-width: 0;
 }
 
 
@@ -282,6 +282,26 @@ body {
   body {
     align-items: flex-start;
     padding-top: 80px;
+  }
+}
+
+/* ===== DESKTOP CAPTCHA: FORCE ONE LINE ===== */
+@media (min-width: 768px) {
+  .captcha-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .captcha-img {
+    width: 120px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+
+  .captcha-input-row {
+    flex: 1;
+    min-width: 0;
   }
 }
 
