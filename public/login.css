@@ -231,7 +231,7 @@
 
 
 .captcha-input:focus {
-  border-color: #F97316;
+  border-color: #e76810;
   box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.25);
 }
 
@@ -239,8 +239,8 @@
   width: 36px;
   height: 36px;
 
-  background-color: #979797;
-  color: #ffffff;
+  background-color: #ffdfcc;
+  color: #e76810;
 
   border: none;
   border-radius: 0px;
