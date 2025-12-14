@@ -187,10 +187,20 @@
 
 .captcha-row {
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 14px 0 18px;
+  width: 100%;
+}
+
+.captcha-input-row {
+  display: flex;
   align-items: center;
   gap: 8px;
-  margin: 14px 0 18px;
+  width: 100%;
 }
+
+
 
 .captcha-img {
   width: 120px;
@@ -201,22 +211,48 @@
 }
 
 .captcha-input {
-  width: 120px;
-  padding: 1.8px 8px;
+  flex: 1;
   height: 36px;
-  border: 1px solid #aaa;
-  border-radius: 2px;
+  padding: 0 10px;
+
+  border: 1px solid #b3b3b3;
+  border-radius: 0;
+
+  outline: none;
+  background-color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 400;
+  color: #000000;
+
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+
+.captcha-input:focus {
+  border-color: #F97316;
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.25);
 }
 
 .refresh-btn {
   width: 36px;
   height: 36px;
+
   background-color: #0067b8;
-  color: #fff;
+  color: #ffffff;
+
   border: none;
+  border-radius: 0px;
+
   cursor: pointer;
-  border-radius: 2px;
   font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
 }
 
 .refresh-btn:hover {
